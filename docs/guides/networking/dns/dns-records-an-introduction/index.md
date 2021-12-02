@@ -7,7 +7,7 @@ description: 'Learn about DNS records and system structure.'
 keywords: ["dns", "record", "domain", "resolution"]
 license: '[CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0)'
 aliases: ['/networking/dns/dns-records-an-introduction/','/networking/dns/introduction-to-dns-records/','/dns-guides/introduction-to-dns-records/','/dns-guides/introduction-to-dns/']
-modified: 2018-05-22
+modified: 2021-07-15
 modified_by:
   name: Linode
 published: 2009-07-29
@@ -66,7 +66,7 @@ You can also use trailing dots in domain names (for example, `example.com.`), wh
     mail        A   12.34.56.78
     www         A   12.34.56.78
 
-Every domain's zone file contains the domain administrator's email address, the name servers, and the DNS records. Of course, you are not limited to these default entries. You can create a variety of DNS records for as many different subdomains as you wish. To learn how to add individual DNS records using the DNS Manager, read the Linode [DNS Manager Overview article](/docs/platform/manager/dns-manager/) guide.
+Every domain's zone file contains the domain administrator's email address, the name servers, and the DNS records. Of course, you are not limited to these default entries. You can create a variety of DNS records for as many different subdomains as you wish. To learn how to add individual DNS records using the DNS Manager, read the Linode [DNS Manager Overview article](/docs/guides/dns-manager/) guide.
 
 ### DNS Resolution
 
@@ -159,6 +159,12 @@ Your MX records don't necessarily have to point to your Linode. If you're using 
 
 In this example, if `mail_1.example.com` is down, mail will be delivered to `mail_2.example.com`. If `mail_2.example.com` is also down, mail will be delivered to `mail_3.example.com`.
 
+{{< note >}}
+If you do not intend to accept any email through your domain, you can add a **Null MX** record, which is simply a specially formatted MX record. This is preferable to not adding any MX records, which causes the sender to still perform email delivery attempts on any A or AAAA records for that domain. A Null MX record tells the sending mail server to stop all delivery attempts, freeing up resources and allowing the sender to resolve any issues with the email address faster.
+
+The instructions for creating a Null MX record vary by DNS provider. For Linode's DNS Manager, the *Subdomain* (name) field should be blank, the *Preference* (priority) field should be 0, and the *Mail Server* field should be blank. This prevents you from creating any other MX records for the domain.
+{{</ note >}}
+
 ### NS
 
 *NS records* or *name server records* set the nameservers for a domain or subdomain. The primary nameserver records for your domain are set both at your registrar and in your zone file. Typical nameserver records (you need at least two) look like this:
@@ -220,6 +226,10 @@ An SPF record for your domain tells other receiving mail servers which outgoing 
 
     example.com   TXT     "v=spf1 a ~all"
 
+{{< note >}}
+When applying TXT records using the [Linode DNS Manager](https://www.linode.com/docs/guides/dns-manager/), quotation marks `"` should not be applied in the example above.
+{{< /note >}}
+
 In your SPF record, you should list all the mail servers from which you send mail, and then exclude all the others. Your SPF record will have a domain or subdomain, type (which is TXT, or SPF if your name server supports it), and text (which starts with "v=spf1" and contains the SPF record settings).
 
 If your Linode is the only mail server you use, you should be able to use the example record above. With this SPF record, the receiving server will check the IP addresses of both the sending server and the IP address of example.com. If the IPs match, the check passes. If not, the check will soft fail (i.e., the message will be marked but will not automatically be rejected for failing the SPF check).
@@ -249,3 +259,7 @@ An example use of SRV records would be to set up [Federated VoIP](http://en.wiki
 ### TXT
 
 A *TXT record* or *text record* provides information about the domain in question to other resources on the internet. It's a flexible type of DNS record that can serve many different purposes depending on the specific contents. One common use of the TXT record is to create an [SPF record](#spf) on nameservers that don't natively support SPF. Another use is to create a [DKIM record](#dkim) for mail signing.
+
+{{< note >}}
+In common DNS Configurations using TXT records, quotation marks `"` are applied. When applying TXT records using the [Linode DNS Manager](https://www.linode.com/docs/guides/dns-manager/), quotation marks `"` should not be applied in most scenarios, as they are added automatically in cases where they are needed.
+{{< /note >}}
