@@ -39,8 +39,8 @@ This guide assumes:
  - Two fully functional Linodes equal to a [2GB Plan](https://www.linode.com/pricing/) or greater must be created using CentOS 7 or later. One will host the FreeIPA server, while the other will host the client.
  - You have followed the [Getting Started](/docs/getting-started) and [Securing Your Server](/docs/security/securing-your-server) guides. One will host the FreeIPA server, while the other will host the client.
  - You are familiar with the [command line](/docs/tools-reference/introduction-to-linux-concepts#so-youre-staring-at-a-shell-prompt)
-- FreeIPA requires that the user has possession of their own fully qualified domain name (FQDN) with an active subdomain for both the client and server. Before proceeding, ensure that each Linode has A/AAAA records configured using a [Unique Subdomain](/docs/guides/dns-manager/) for both the server and client Linode respectively.
-- [Set up Reverse DNS](/docs/guides/configure-your-linode-for-reverse-dns/) for each Linode using their full unique subdomain.
+- FreeIPA requires that the user has possession of their own fully qualified domain name (FQDN) with an active subdomain for both the client and server. Before proceeding, ensure that each Linode has A/AAAA records configured using a [Unique Subdomain](/docs/products/networking/dns-manager/) for both the server and client Linode respectively.
+- [Set up Reverse DNS](/docs/guides/configure-rdns/) for each Linode using their full unique subdomain.
 
 ## Prepare the Client and Server
 
@@ -67,7 +67,7 @@ First, the FreeIPA Server and Client Linodes must be prepared for the installati
 | 53 | DNS | TCP/UDP |
 | 123 | NTP | UDP |
 
-  All of the above ports can be opened using [firewalld](https://www.linode.com/docs/guides/introduction-to-firewalld-on-centos/) with the following command:
+  All of the above ports can be opened using the commands in[firewalld cmd list](/docs/guides/introduction-to-firewalld-on-centos/). Type the following command:
 
     firewall-cmd --permanent --add-port={80/tcp,443/tcp,389/tcp,636/tcp,88/tcp,464/tcp,53/tcp,88/udp,464/udp,53/udp,123/udp}
 

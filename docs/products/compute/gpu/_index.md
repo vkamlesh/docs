@@ -37,7 +37,7 @@ GPU Compute Instances are suitable for specialized workloads that are optimized 
 - Video encoding
 - Graphics processing
 
-See the [Use Cases for Linode GPU Instances](/docs/guides/why-linode-gpu/) guide to learn more about these use cases.
+See the [Use Cases for Linode GPU Instances](/docs/products/compute/gpu/guides/use-cases/) guide to learn more about these use cases.
 
 ## Availability
 
@@ -54,7 +54,9 @@ Atlanta, GA, United States; Frankfurt, Germany; Newark, NJ, United States; Mumba
 | Outbound Network Transfer | 16 TB - 20 TB |
 | Outbound Network Bandwidth | 10 Gbps |
 
-Pricing starts at $1,000/mo ($1.50/hr) for a GPU CPU Compute Instance with 1 GPUcard, 8 vCPU cores, 32 GB of memory, and 640 GB of SSD storage. Review the [Pricing page](https://www.linode.com/pricing/#row--compute) for additional plans and their associated costs. See the [Comparison of Compute Instances](#comparison-of-compute-instances) section below to learn more about other Instance types.
+Pricing starts at $1,000/mo ($1.50/hr) for a GPU Instance with 1 GPU card, 8 vCPU cores, 32 GB of memory, and 640 GB of SSD storage. Review the [Pricing page](https://www.linode.com/pricing/#row--compute) for additional plans and their associated costs. See the [Comparison of Compute Instances](#comparison-of-compute-instances) section below to learn more about other Instance types.
+
+{{< content "gpu-deposit-shortguide" >}}
 
 ## Additional Technical Specifications
 
@@ -67,7 +69,7 @@ In addition to the resources allocated to each available plan (outlined above), 
 - Free inbound network transfer
 - Dedicated IPv4 and IPv6 addresses (additional addresses available on request)
 - Deploy using the many available [Linux Distributions](https://www.linode.com/distributions/), [Marketplace Apps](https://www.linode.com/marketplace/), or Community [StackScripts](https://www.linode.com/products/stackscripts/)
-- Direct console access through [Lish](/docs/guides/using-the-lish-console/)
+- Direct console access through [Lish](/docs/guides/lish/)
 - Provisioning and management through the [Cloud Manager](https://cloud.linode.com/), [Linode CLI](https://www.linode.com/products/cli/), or programmatically through the [Linode API](https://www.linode.com/products/linode-api/)
 - [Multi-queue NIC](/docs/guides/multiqueue-nic/) support on plans with 2 or more vCPU cores.
 
