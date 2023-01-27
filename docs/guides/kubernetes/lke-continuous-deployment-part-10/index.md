@@ -79,7 +79,7 @@ Now that there is an application running on our Kubernetes cluster, the next ste
 (derived from the official installation instructions)
 - We're going to use Helm one more time:
 
-      helm upgrade --install metrics-server bitnami/metrics-server \
+      helm upgrade --install metrics-server metrics-server/metrics-server \
         --create-namespace --namespace metrics-server \
         --set apiService.create=true \
         --set extraArgs.kubelet-insecure-tls=true \
